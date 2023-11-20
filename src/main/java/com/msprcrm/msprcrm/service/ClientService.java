@@ -1,6 +1,7 @@
 package com.msprcrm.msprcrm.service;
 
 import com.msprcrm.msprcrm.entity.Client;
+import com.msprcrm.msprcrm.entity.Product;
 import com.msprcrm.msprcrm.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,13 +30,23 @@ public class ClientService {
 
         if (existingClient != null) {
             // Mettez à jour les propriétés nécessaires
-            existingClient.setNom(updatedClient.getNom());
+            existingClient.setName(updatedClient.getName());
+            existingClient.setLastName(updatedClient.getLastName());
+            existingClient.setCoordonnees(updatedClient.getCoordonnees());
             existingClient.setEmail(updatedClient.getEmail());
 
             return clientRepository.save(existingClient);
         }
 
         return null;
+    }
+
+
+    public void addClient(Client client) {
+        // Ajouter la logique pour ajouter un produit
+        // Vous pouvez également effectuer des validations ici avant d'ajouter le produit
+
+        clientRepository.save(client);
     }
 
     public void deleteClient(Long id) {
