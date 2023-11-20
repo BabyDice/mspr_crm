@@ -10,8 +10,16 @@ import java.util.Optional;
 
 @Service
 public class ProductService {
+
+
     @Autowired
     private ProductRepository productRepository;
+    public void addProduct(Product product) {
+        // Ajouter la logique pour ajouter un produit
+        // Vous pouvez également effectuer des validations ici avant d'ajouter le produit
+
+        productRepository.save(product);
+    }
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();

@@ -1,0 +1,48 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Interface</title>
+</head>
+<body>
+<h1>Client CRUD Interface</h1>
+
+<!-- Form for adding a new product -->
+<!-- addProduct.html -->
+
+<!-- Form for adding a new client -->
+<form id="addClientForm">
+    <label for="clientName">Name :</label>
+    <input type="text" id="clientName" required>
+    <label for="clientLastName">Last Name:</label>
+    <input type="text" id="clientLastName" required>
+    <label for="clientCoordonnees">Coordonnées :</label>
+    <input type="text" id="clientCoordonnees" required>
+    <label for="clientEmail">Email :</label>
+    <input type="text" id="clientEmail" required>
+    <button type="button" onclick="addClient()">Add Client</button>
+</form>
+<!-- Table for displaying clients -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Coordonnées</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody id="clientTableBody">
+    <!-- Client rows will be inserted here -->
+    </tbody>
+</table>
+
+<script src="JS/script.js"></script>
+</body>
+</html>

@@ -9,17 +9,15 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nom;
+    private String name;
+    private String lastName;
+    private String coordonnees;
     private String email;
 
-    /*public Client(Long id, String nom, String email) {
-        this.id = id;
-        this.nom = nom;
-        this.email = email;
-    }*/
+    // constructeurs, getters et setters
+
 
     public Client() {
-
     }
 
     public Long getId() {
@@ -30,12 +28,28 @@ public class Client {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getCoordonnees() {
+        return coordonnees;
+    }
+
+    public void setCoordonnees(String coordonnees) {
+        this.coordonnees = coordonnees;
     }
 
     public String getEmail() {
@@ -45,5 +59,4 @@ public class Client {
     public void setEmail(String email) {
         this.email = email;
     }
-// Constructeurs, getters et setters
 }
