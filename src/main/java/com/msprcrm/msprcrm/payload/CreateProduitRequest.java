@@ -1,26 +1,11 @@
-package com.msprcrm.msprcrm.entity;
+package com.msprcrm.msprcrm.payload;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-
-
-@Entity
-public class Produit {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
-    private Long ident;
-
+public class CreateProduitRequest {
     private String nom;
 
     private String type;
 
     private double prix;
-
-
-    private String description;
-
 
     private String adresse;
 
@@ -32,17 +17,7 @@ public class Produit {
 
     private String nb_piece;
 
-
-
-
-
-    public Long getIdent() {
-        return ident;
-    }
-
-    public void setIdent(Long ident) {
-        this.ident = ident;
-    }
+    private String description;
 
     public String getNom() {
         return nom;
@@ -67,7 +42,6 @@ public class Produit {
     public void setPrix(double prix) {
         this.prix = prix;
     }
-
 
     public String getAdresse() {
         return adresse;
@@ -109,7 +83,6 @@ public class Produit {
         this.nb_piece = nb_piece;
     }
 
-
     public String getDescription() {
         return description;
     }
@@ -118,6 +91,3 @@ public class Produit {
         this.description = description;
     }
 }
-
-
-

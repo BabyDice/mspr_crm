@@ -12,14 +12,14 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/api/client")
 @AllArgsConstructor
 public class ClientController {
 
     @Autowired
     ClientRepository clientRepository;
 
-    @GetMapping("getClients")
+    @GetMapping("/getClients")
     public ResponseEntity<?> getClient(){
         try {
             List<Client> clientList = clientRepository.findAll();
@@ -30,7 +30,7 @@ public class ClientController {
         }
     }
 
-    @PostMapping("createClient")
+    @PostMapping("/createClient")
     public ResponseEntity<?> createClient(@RequestBody CreateClientRequest createClientRequest){
         try {
 
@@ -52,7 +52,7 @@ public class ClientController {
         }
     }
 
-    @PutMapping("editClients")
+    @PutMapping("/editClients/{ident}")
     public ResponseEntity<?> editClients(@RequestBody CreateClientRequest createClientRequest){
         try {
             Client client = new Client();
@@ -72,7 +72,7 @@ public class ClientController {
         }
     }
 
-    @DeleteMapping("client/{ident}")
+    @DeleteMapping("/client/{ident}")
     public ResponseEntity<?> deleteClient(@PathVariable(value = "ident") Long clientId){
         try {
 
