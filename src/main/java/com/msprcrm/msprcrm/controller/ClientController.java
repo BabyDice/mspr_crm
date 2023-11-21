@@ -73,7 +73,7 @@ public class ClientController {
     }
 
     @DeleteMapping("client/{ident}")
-    public ResponseEntity<?> getClient(@PathVariable(value = "ident") Long clientId){
+    public ResponseEntity<?> deleteClient(@PathVariable(value = "ident") Long clientId){
         try {
 
             Client client = clientRepository.getClientByIdent(clientId).get();
