@@ -10,18 +10,26 @@ public class Commande {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
+    @OneToOne
+    @JoinColumn(name="client_fk")
+    private Client client;
 
-    @Column(name = "date_commande")
+    @OneToOne
+    @JoinColumn(name="product_fk")
+    private Product product;
+
     private Date dateCommande;
 
     // D'autres champs liés à la commande
 
     // Constructeurs, getters et setters
-
-
     public Commande() {
+    }
+
+    public Commande(Client client, Product product) {
+        this.client = client;
+        this.product = product;
     }
 
     public Long getId() {
@@ -38,5 +46,21 @@ public class Commande {
 
     public void setDateCommande(Date dateCommande) {
         this.dateCommande = dateCommande;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

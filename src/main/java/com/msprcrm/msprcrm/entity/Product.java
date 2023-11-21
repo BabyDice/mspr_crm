@@ -36,6 +36,12 @@ public class Product {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return getName(); // ou toute autre logique pour afficher le nom du client
+    }
+
+
     public String getDescription() {
         return description;
     }
@@ -60,4 +66,6 @@ public class Product {
         this.stock = stock;
     }
     // Constructeurs, getters, setters
+
+
 }

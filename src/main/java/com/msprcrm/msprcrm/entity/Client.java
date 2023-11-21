@@ -36,6 +36,12 @@ public class Client {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return getName(); // ou toute autre logique pour afficher le nom du client
+    }
+
+
     public String getLastName() {
         return lastName;
     }

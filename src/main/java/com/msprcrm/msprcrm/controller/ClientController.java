@@ -29,12 +29,13 @@ public class ClientController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Map<String, String>> addProduct(@RequestBody Client client) {
+    public ResponseEntity<Map<String, String>> addClient(@RequestBody Client client) {
         clientService.addClient(client);
         Map<String, String> response = new HashMap<>();
-        response.put("message", "Produit ajouté avec succès.");
+        response.put("message", "Client ajouté avec succès.");
         return ResponseEntity.ok(response);
     }
+
 
     @PutMapping("/{id}")
     public Client updateClient(@PathVariable Long id, @RequestBody Client client) {

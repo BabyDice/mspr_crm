@@ -171,6 +171,70 @@ function loadProducts() {
         .catch(error => console.error('Error fetching products:', error));
 }
 
+// commandes.js
+
+// Function to add a new commande
+function addCommande() {
+    // Retrieve data from the form
+    const dateCommande = document.getElementById('dateCommande').value;
+
+    // Create an object with the data
+    const commandeData = {
+        dateCommande: dateCommande,
+        // Add other properties as needed
+    };
+
+    // Send data to the backend (use fetch or axios, for example)
+    fetch('http://localhost:8080/commandes/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(commandeData),
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Process the backend response (may include a success message, etc.)
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+// Function to create a table row for a commande
+function createCommandeRow(commande) {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${commande.id}</td>
+        <td>${commande.dateCommande}</td>
+        <td>${commande.client.nom}</td>
+        <td>${commande.product.name}</td>
+    `;
+    return row;
+}
+
+// Function to load commandes and update the table
+function loadCommandes() {
+    const commandeTableBody = document.getElementById('commandeTableBody');
+    commandeTableBody.innerHTML = '';
+
+    // Fetch commandes from the API
+    fetch('http://localhost:8080/commandes')
+        .then(response => response.json())
+        .then(commandes => {
+            // Create a table row for each commande and append it to the table
+            commandes.forEach(commande => {
+                const row = createCommandeRow(commande);
+                commandeTableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching commandes:', error));
+}
+
+// Load commandes when the page is loaded
+document.addEventListener('DOMContentLoaded', loadCommandes);
+
 // Load products when the page is loaded
 document.addEventListener('DOMContentLoaded', loadProducts);
 document.addEventListener('DOMContentLoaded', loadClients);

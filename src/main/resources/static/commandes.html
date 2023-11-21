@@ -1,0 +1,171 @@
+<!-- commandes.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Ajoutez vos balises head ici -->
+</head>
+<body>
+<h2>Liste des Commandes</h2>
+
+<table border="1" id="commandesTable">
+    <tr>
+        <th>Client</th>
+        <th>Produit</th>
+        <th>Date Commande</th>
+    </tr>
+    <!-- Les commandes seront ajoutées dynamiquement avec JavaScript -->
+</table>
+
+<h2>Ajouter une Commande</h2>
+
+<form onsubmit="addCommande(); return false;">
+    <label for="clientSelect">Client :</label>
+    <select id="clientSelect">
+        <!-- Options seront ajoutées dynamiquement avec JavaScript -->
+    </select>
+
+    <label for="productSelect">Produit :</label>
+    <select id="productSelect">
+        <!-- Options seront ajoutées dynamiquement avec JavaScript -->
+    </select>
+
+    <label for="dateCommandeInput">Date de Commande :</label>
+    <input type="date" id="dateCommandeInput" required>
+
+    <button type="submit" class="btn btn-primary">Ajouter la Commande</button>
+</form>
+
+<script>
+    function fillSelectOptions(data, selectId) {
+        const select = document.getElementById(selectId);
+
+        data.forEach(item => {
+            const option = document.createElement("option");
+            option.value = item.id;
+            option.text = item.name;
+            select.add(option);
+        });
+    }
+
+    function addCommande() {
+        // Récupérez les valeurs sélectionnées dans les sélecteurs
+        const clientId = document.getElementById("clientSelect").value;
+        const productId = document.getElementById("productSelect").value;
+        const dateCommande = document.getElementById("dateCommandeInput").value;
+
+        // Effectuez une requête vers votre backend pour ajouter la commande
+        fetch("/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                client: { id: parseInt(clientId) },
+                product: { id: parseInt(productId) },
+                dateCommande: dateCommande,
+            }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+                    // Réponse du backend après l'ajout réussi
+                    console.log("Réponse du serveur :", data);
+                    alert(data);  // Affichez le message de succès provenant du backend
+            })
+
+            .catch(error => {
+                console.error("Erreur lors de la requête POST:", error);
+                alert("Erreur lors de l'ajout de la commande. Veuillez vérifier la console pour plus de détails.");
+            });
+    }
+
+    // Récupérez les clients et les produits depuis votre backend
+    // ...
+
+    // Récupérez les clients depuis votre backend
+    fetch("/clients")
+        .then(response => response.json())
+        .then(data => {
+            console.log("Clients data:", data);
+            fillSelectOptions(data, "clientSelect");
+        })
+        .catch(error => {
+            console.error("Erreur lors de la récupération des clients:", error);
+            alert("Erreur lors de la récupération des clients. Veuillez vérifier la console pour plus de détails.");
+        });
+
+    // Récupérez les produits depuis votre backend
+    fetch("/products")
+        .then(response => response.json())
+        .then(data => {
+            console.log("Products data:", data);
+            fillSelectOptions(data, "productSelect");
+        })
+        .catch(error => {
+            console.error("Erreur lors de la récupération des produits:", error);
+            alert("Erreur lors de la récupération des produits. Veuillez vérifier la console pour plus de détails.");
+        });
+    fetch("/commandes")
+        .then(response => response.json())
+        .then(data => {
+            console.log("Commandes data:", data);
+            // Logique pour afficher les commandes dans votre table
+            displayCommandes(data);
+        })
+        .catch(error => {
+            console.error("Erreur lors de la récupération des commandes:", error);
+            alert("Erreur lors de la récupération des commandes. Veuillez vérifier la console pour plus de détails.");
+        });
+
+
+    // Fonction pour afficher les commandes dans la table
+    // Fonction pour afficher les commandes dans la table
+    // Fonction pour afficher les commandes dans la table
+    function displayCommandes(commandes) {
+        const commandesTable = document.getElementById("commandesTable");
+
+        // Effacez le contenu actuel de la table
+        commandesTable.innerHTML = "";
+
+        // Ajoutez les en-têtes de colonnes à la table
+        const headerRow = commandesTable.insertRow(0);
+        const headers = ["Client", "Produit", "Date Commande"];
+        headers.forEach(headerText => {
+            const header = document.createElement("th");
+            header.textContent = headerText;
+            headerRow.appendChild(header);
+        });
+
+        // Vérifiez si commandes est un tableau
+        if (Array.isArray(commandes)) {
+            // Ajoutez les données des commandes à la table
+            commandes.forEach(commande => {
+                const newRow = commandesTable.insertRow(-1);
+
+                // Ajoutez les cellules avec les données de la commande
+                const clientCell = newRow.insertCell(0);
+                clientCell.textContent = commande.client.name;
+
+                const productCell = newRow.insertCell(1);
+                productCell.textContent = commande.product.name;
+
+                const dateCommandeCell = newRow.insertCell(2);
+                dateCommandeCell.textContent = commande.dateCommande;
+            });
+        } else {
+            console.error("Les données de commande ne sont pas au format attendu :", commandes);
+            alert("Erreur lors de la récupération des commandes. Veuillez vérifier la console pour plus de détails.");
+        }
+    }
+
+    // ...
+
+
+    // ...
+</script>
+</body>
+</html>
