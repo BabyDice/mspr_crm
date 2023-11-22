@@ -1,13 +1,14 @@
 <!-- commandes.html -->
 <!DOCTYPE html>
 <html>
-<head>
-    <!-- Ajoutez vos balises head ici -->
+<head><!-- Ajoutez vos balises head ici -->
 </head>
 <body>
-<h2>Liste des Commandes</h2>
+<tr>
+    <th colspan="3">Liste des Commandes</th>
+</tr>
 
-<table border="1" id="commandesTable">
+<table border="1" id="commandesTable" style="height: 40px; overflow: hidden;">
     <tr>
         <th>Client</th>
         <th>Produit</th>
@@ -145,6 +146,7 @@
         commandes.forEach(commande => {
             const newRow = commandesTable.insertRow(-1);
 
+            // Dans votre fonction displayCommandes après avoir défini dateCommandeCell.textContent
             // Ajoutez les cellules avec les données de la commande
             const clientCell = newRow.insertCell(0);
             clientCell.textContent = commande.client ? commande.client.name : "N/A";
@@ -154,6 +156,9 @@
 
             const dateCommandeCell = newRow.insertCell(2);
             dateCommandeCell.textContent = commande.dateCommande;
+            const formattedDate = new Date(commande.dateCommande).toLocaleDateString();
+            dateCommandeCell.textContent = formattedDate;
+
         });
     }
 
