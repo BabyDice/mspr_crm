@@ -7,13 +7,11 @@ import com.msprcrm.msprcrm.service.ClientService;
 import com.msprcrm.msprcrm.service.CommandeService;
 import com.msprcrm.msprcrm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +28,7 @@ public class CommandeController {
 
     @Autowired
     private CommandeService commandeService;
-    @GetMapping("/commandes")
+    @GetMapping("/getAllCommandes")
     @ResponseBody
     public List<Commande> getAllCommandes(Model model) {
         List<Commande> commandes = commandeService.getAllCommandes();
@@ -38,11 +36,22 @@ public class CommandeController {
     }
 
     @PostMapping("/add")
-    public String addCommande(@ModelAttribute("commande") Commande commande) {
-        // Logique pour ajouter la commande
-        // Après l'ajout, redirigez vers la page des commandes
-        return "redirect:/commandes";
+    public ResponseEntity<List<Commande>> addCommande(@RequestBody Commande commande) {
+        try {
+            commandeService.addCommande(commande);
+            List<Commande> updatedCommandes = commandeService.getAllCommandes();
+            return ResponseEntity.ok(updatedCommandes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Ajoutez un log détaillé de l'exception
+            System.err.println("Exception during addCommande: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
+
+
+
+
 
     // Autres méthodes du contrôleur...
 }

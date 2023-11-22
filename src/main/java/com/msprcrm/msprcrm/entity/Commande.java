@@ -12,11 +12,9 @@ public class Commande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @JoinColumn(name="client_fk")
     private Client client;
 
     @OneToOne
-    @JoinColumn(name="product_fk")
     private Product product;
 
     private Date dateCommande;

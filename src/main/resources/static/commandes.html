@@ -39,7 +39,10 @@
     function fillSelectOptions(data, selectId) {
         const select = document.getElementById(selectId);
 
+        console.log("Filling options for select with ID:", selectId);
+
         data.forEach(item => {
+            console.log("Adding option:", item);
             const option = document.createElement("option");
             option.value = item.id;
             option.text = item.name;
@@ -47,11 +50,20 @@
         });
     }
 
+
     function addCommande() {
         // Récupérez les valeurs sélectionnées dans les sélecteurs
         const clientId = document.getElementById("clientSelect").value;
         const productId = document.getElementById("productSelect").value;
         const dateCommande = document.getElementById("dateCommandeInput").value;
+
+        // Construisez l'objet avec les données
+        const commandeData = {
+            client: { id: parseInt(clientId) },
+            product: { id: parseInt(productId) },
+            dateCommande: dateCommande,
+            // Ajoutez d'autres propriétés selon vos besoins
+        };
 
         // Effectuez une requête vers votre backend pour ajouter la commande
         fetch("/add", {
@@ -59,11 +71,7 @@
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                client: { id: parseInt(clientId) },
-                product: { id: parseInt(productId) },
-                dateCommande: dateCommande,
-            }),
+            body: JSON.stringify(commandeData),
         })
             .then(response => {
                 if (!response.ok) {
@@ -72,16 +80,21 @@
                 return response.json();
             })
             .then(data => {
-                    // Réponse du backend après l'ajout réussi
-                    console.log("Réponse du serveur :", data);
-                    alert(data);  // Affichez le message de succès provenant du backend
+                // Réponse du backend après l'ajout réussi
+                console.log("Réponse du serveur :", data);
+                // Mise à jour de la table des commandes
+                displayCommandes(data);
+                // Effacez les valeurs dans les champs après l'ajout
+                document.getElementById("clientSelect").value = "";
+                document.getElementById("productSelect").value = "";
+                document.getElementById("dateCommandeInput").value = "";
             })
-
             .catch(error => {
                 console.error("Erreur lors de la requête POST:", error);
                 alert("Erreur lors de l'ajout de la commande. Veuillez vérifier la console pour plus de détails.");
             });
     }
+
 
     // Récupérez les clients et les produits depuis votre backend
     // ...
@@ -109,7 +122,7 @@
             console.error("Erreur lors de la récupération des produits:", error);
             alert("Erreur lors de la récupération des produits. Veuillez vérifier la console pour plus de détails.");
         });
-    fetch("/commandes")
+    fetch("/getAllCommandes")
         .then(response => response.json())
         .then(data => {
             console.log("Commandes data:", data);
@@ -123,47 +136,26 @@
 
 
     // Fonction pour afficher les commandes dans la table
-    // Fonction pour afficher les commandes dans la table
-    // Fonction pour afficher les commandes dans la table
     function displayCommandes(commandes) {
+        // Supprimez le contenu actuel de la table
         const commandesTable = document.getElementById("commandesTable");
-
-        // Effacez le contenu actuel de la table
         commandesTable.innerHTML = "";
 
-        // Ajoutez les en-têtes de colonnes à la table
-        const headerRow = commandesTable.insertRow(0);
-        const headers = ["Client", "Produit", "Date Commande"];
-        headers.forEach(headerText => {
-            const header = document.createElement("th");
-            header.textContent = headerText;
-            headerRow.appendChild(header);
+        // Parcourez les nouvelles commandes et ajoutez-les à la table
+        commandes.forEach(commande => {
+            const newRow = commandesTable.insertRow(-1);
+
+            // Ajoutez les cellules avec les données de la commande
+            const clientCell = newRow.insertCell(0);
+            clientCell.textContent = commande.client ? commande.client.name : "N/A";
+
+            const productCell = newRow.insertCell(1);
+            productCell.textContent = commande.product ? commande.product.name : "N/A";
+
+            const dateCommandeCell = newRow.insertCell(2);
+            dateCommandeCell.textContent = commande.dateCommande;
         });
-
-        // Vérifiez si commandes est un tableau
-        if (Array.isArray(commandes)) {
-            // Ajoutez les données des commandes à la table
-            commandes.forEach(commande => {
-                const newRow = commandesTable.insertRow(-1);
-
-                // Ajoutez les cellules avec les données de la commande
-                const clientCell = newRow.insertCell(0);
-                clientCell.textContent = commande.client.name;
-
-                const productCell = newRow.insertCell(1);
-                productCell.textContent = commande.product.name;
-
-                const dateCommandeCell = newRow.insertCell(2);
-                dateCommandeCell.textContent = commande.dateCommande;
-            });
-        } else {
-            console.error("Les données de commande ne sont pas au format attendu :", commandes);
-            alert("Erreur lors de la récupération des commandes. Veuillez vérifier la console pour plus de détails.");
-        }
     }
-
-    // ...
-
 
     // ...
 </script>

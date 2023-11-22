@@ -1,9 +1,7 @@
 // CommandeService.java
 package com.msprcrm.msprcrm.service;
 
-import com.msprcrm.msprcrm.entity.Client;
 import com.msprcrm.msprcrm.entity.Commande;
-import com.msprcrm.msprcrm.entity.Product;
 import com.msprcrm.msprcrm.repository.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,13 +25,8 @@ public class CommandeService {
         return commandeRepository.save(commande);
     }
 
-    // CommandeService.java
-
-
-        // Autres méthodes du service...
-
-        public void addCommande(Commande commande) {
-            // Logique pour ajouter la commande à la base de données
+        public Commande addCommande(Commande commande) {
+            return commandeRepository.save(commande);
         }
 
 }
