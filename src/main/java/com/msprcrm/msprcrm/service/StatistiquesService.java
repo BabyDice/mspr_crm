@@ -1,24 +1,38 @@
+// com.msprcrm.msprcrm.service.StatistiquesService
+
 package com.msprcrm.msprcrm.service;
 
-import com.msprcrm.msprcrm.entity.Statistiques;
-import com.msprcrm.msprcrm.repository.StatistiquesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @Service
 public class StatistiquesService {
 
     @Autowired
-    private StatistiquesRepository statistiqueRepository;
+    private CommandeService commandeService;
 
-    public List<Statistiques> getAllStatistiques() {
-        return statistiqueRepository.findAll();
-    }
+    @Autowired
+    private ClientService clientService;
 
-    public Optional<Statistiques> getStatistiqueById(Long id) {
-        return statistiqueRepository.findById(id);
+    @Autowired
+    private ProductService productService;
+
+    public Map<String, Object> getStatistiques() {
+        // Exemple de statistiques, ajustez en fonction de vos besoins
+        long totalCommandes = commandeService.getTotalCommandes();
+        long totalClients = clientService.getTotalClients();
+        long totalProduits = productService.getTotalProduits();
+
+        // Vous pouvez ajouter d'autres statistiques en fonction de vos besoins
+
+        Map<String, Object> stats = Map.of(
+                "totalCommandes", totalCommandes,
+                "totalClients", totalClients,
+                "totalProduits", totalProduits
+        );
+
+        return stats;
     }
 }

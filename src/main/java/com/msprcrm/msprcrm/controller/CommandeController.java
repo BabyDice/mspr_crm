@@ -48,10 +48,4 @@ public class CommandeController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
-
-
-
-
-    // Autres méthodes du contrôleur...
 }

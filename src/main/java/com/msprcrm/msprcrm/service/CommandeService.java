@@ -24,9 +24,13 @@ public class CommandeService {
     public Commande saveCommande(Commande commande) {
         return commandeRepository.save(commande);
     }
+    public Commande addCommande(Commande commande) {
+        return commandeRepository.save(commande);
+    }
 
-        public Commande addCommande(Commande commande) {
-            return commandeRepository.save(commande);
-        }
+    public long getTotalCommandes() {
+        List<Commande> commandes = commandeRepository.findAll();
+        return commandes.size();
+    }
 
 }

@@ -41,6 +41,11 @@ public class ClientService {
         return null;
     }
 
+    public long getTotalClients() {
+        List<Client> clients = clientRepository.findAll();
+        return clients.size();
+    }
+
 
     public void addClient(Client client) {
         // Ajouter la logique pour ajouter un produit

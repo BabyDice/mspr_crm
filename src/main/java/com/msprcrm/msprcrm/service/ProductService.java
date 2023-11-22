@@ -46,6 +46,10 @@ public class ProductService {
                 })
                 .orElse(null); // Gestion de l'absence du produit avec l'id spécifié
     }
+    public long getTotalProduits() {
+        List<Product> produits = productRepository.findAll();
+        return produits.size();
+    }
 
     // Vous pouvez ajouter d'autres méthodes CRUD personnalisées ici si nécessaire
 }
