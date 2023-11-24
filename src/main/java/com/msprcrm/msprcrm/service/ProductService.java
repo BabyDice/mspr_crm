@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -50,6 +51,18 @@ public class ProductService {
         List<Product> produits = productRepository.findAll();
         return produits.size();
     }
+
+
+    public List<Product> getTopSellingProducts(int limit) {
+        // Implémentation pour récupérer les produits les plus vendus
+        // Utilisez la logique appropriée, par exemple, en fonction des quantités vendues
+        // Retournez une liste de produits
+        return productRepository.findAll().stream()
+                .sorted((p1, p2) -> Long.compare(p2.getTotalVentes(), p1.getTotalVentes()))
+                .limit(limit)
+                .collect(Collectors.toList());
+    }
+
 
     // Vous pouvez ajouter d'autres méthodes CRUD personnalisées ici si nécessaire
 }

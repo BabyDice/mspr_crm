@@ -7,14 +7,21 @@
     <style>
         /* Ajoutez votre CSS personnalisé ici si nécessaire */
     </style>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <h1>Statistiques CRM</h1>
 
 <div id="statistiquesContainer">
+    <h2>Produits les plus vendus</h2>
+    <ul id="produitsPlusVendus"></ul>
     <p>Total des commandes : <span id="totalCommandes"></span></p>
     <p>Total des clients : <span id="totalClients"></span></p>
     <p>Total des produits : <span id="totalProduits"></span></p>
+    <div>
+        <p id="topSellingProduct">Produit le plus vendu : <span id="nomProduitTop"></span> (Ventes: <span id="ventesTop"></span>)</p>
+        <p id="leastSellingProduct">Produit le moins vendu : <span id="nomProduitLeast"></span> (Ventes: <span id="ventesLeast"></span>)</p>
+    </div>
 </div>
 
 <script src="JS/statistiques.js"></script>

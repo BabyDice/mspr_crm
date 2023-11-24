@@ -17,6 +17,9 @@ public class Product {
 
     private Integer stock;
 
+    private long totalVentes;
+
+
     public Product() {
     }
 
@@ -39,6 +42,23 @@ public class Product {
     @Override
     public String toString() {
         return getName(); // ou toute autre logique pour afficher le nom du client
+    }
+
+
+    public String getNom() {
+        return name;
+    }
+
+    public void setNom(String name) {
+        this.name = name;
+    }
+
+    public long getTotalVentes() {
+        return totalVentes;
+    }
+
+    public void setTotalVentes(long totalVentes) {
+        this.totalVentes = totalVentes;
     }
 
 

@@ -3,6 +3,7 @@ package com.msprcrm.msprcrm.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "commandes")
@@ -11,10 +12,13 @@ public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     private Date dateCommande;
@@ -22,6 +26,8 @@ public class Commande {
     // D'autres champs liés à la commande
 
     // Constructeurs, getters et setters
+    // ...
+
     public Commande() {
     }
 
