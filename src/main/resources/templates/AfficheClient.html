@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-  <link rel="stylesheet" href="../static/css/AffichClient.css" th:href="@{/css/AffichClient.css}">
+    <title>Test</title>
+    <link th:href="@{/css/AffichClient.css}" rel="stylesheet">
 </head>
+
 <body>
-    <div class="wrap">
-        <h1>Affiche Client</h1>
-        <div class="formBox">
-            <form action="#" th:action="@{/api/client}" th:object="${client}" >
-                Nom :
-                <input type="text" th:fields="*{nom}">
-                Prenom :
-                <input type="text" th:fields="*{prenom}">
-                <input type="submit" value="Send">
-            </form>
-        </div>
-
-        <div class="clientBox" th:each="client:${clientList}">
-            <p class="nom" th:text="${client.nom}"></p>
-
-        </div>
+<div class="wrap">
+    <h1>Affiche Client</h1>
+    <div class="formBox">
+        <form action="#" th:action="@{/api/client}" th:object="${client}" >
+            Nom :
+            <input type="text" th:fields="${client.nom}">
+            Prenom :
+            <input type="text" th:fields="${client.prenom}">
+            <input type="submit" value="Send">
+        </form>
     </div>
+
+    <div class="clientBox" th:each="client:${clientList}">
+        <p class="nom" th:text="${client.nom}"></p>
+
+    </div>
+</div>
 </body>
 </html>

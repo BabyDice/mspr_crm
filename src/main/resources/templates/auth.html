@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth</title>
+
+    <link th:href="@{/css/login.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/login.js}"></script>
+
+</head>
+<body>
+<section class="loginBody">
+
+    <div class="loginForm">
+        <form>
+            <h3>Login</h3>
+
+            <label for="inputPseudo">Pseudo</label>
+            <input type="text" placeholder="Pseudo" id="inputPseudo">
+
+            <label for="inputPassword">Password</label>
+            <input type="password" placeholder="Password" id="inputPassword">
+
+            <button type="button" class="loginBtn" onclick="login()">Log In</button>
+            <div id="errorMessage"></div>
+
+        </form>
+    </div>
+
+</section>
+</body>
+</html>
