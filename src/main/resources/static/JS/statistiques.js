@@ -7,8 +7,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fetch des statistiques depuis le backend
     fetchStatistiques();
 
-    // Ajoutez d'autres appels de fonction pour les autres statistiques
+    // Ensuite, appelez la fonction fetchChiffreAffairesAnnuel avec l'année actuelle
+    const currentYear = new Date().getFullYear();
+    fetchChiffreAffairesAnnuel(currentYear);
+
+    // Ensuite, appelez la fonction fetchChiffreAffairesMensuel avec le mois et l'année actuels
+    const currentMonth = new Date().getMonth() + 1;
+    fetchChiffreAffairesMensuel(currentMonth, currentYear);
+
+    // ... (restez inchangé)
 });
+
 
 function fetchStatistiques() {
     fetch('http://localhost:8080/stats')
@@ -89,3 +98,92 @@ function handleResponse(response) {
     }
     return response.json();
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth() + 1;
+
+    // Ensuite, appelez la fonction fetchChiffreAffairesAnnuel avec l'année actuelle
+    fetchChiffreAffairesAnnuel(currentYear);
+
+    // Ensuite, appelez la fonction fetchChiffreAffairesMensuel avec le mois et l'année actuels
+    fetchChiffreAffairesMensuel(currentMonth, currentYear);
+
+    // ... (restez inchangé)
+});
+
+function fetchChiffreAffairesAnnuel() {
+    // Récupérez la valeur de l'année à partir de la liste déroulante
+    const selectedYear = document.getElementById('selectYearAnnuel').value;
+
+    fetch(`/chiffreAffairesAnnuel?year=${selectedYear}`)
+        .then(response => {
+            if (!response.ok) {
+                console.error(`Error: ${response.status}`);
+                throw new Error(`Error: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log("Chiffre d'affaires annuel (raw data):", data);
+
+            // Convertissez la chaîne en nombre
+            const chiffreAffairesAnnuel = Number(data.trim());
+
+            if (!isNaN(chiffreAffairesAnnuel)) {
+                // Mettez à jour le contenu HTML avec le chiffre d'affaires annuel
+                const chiffreAffairesAnnuelElement = document.getElementById('chiffreAffairesAnnuel');
+                if (chiffreAffairesAnnuelElement) {
+                    chiffreAffairesAnnuelElement.textContent = chiffreAffairesAnnuel.toString();
+                    console.log("Mise à jour réussie !");
+                } else {
+                    console.error("Erreur : Element HTML non trouvé.");
+                }
+            } else {
+                console.error("Erreur : La valeur n'est pas un nombre valide.");
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
+
+function fetchChiffreAffairesMensuel() {
+    const selectedMonth = document.getElementById('selectMonth').value;
+    const selectedYear = document.getElementById('selectYear').value;
+
+    fetch(`/chiffreAffairesMensuel?month=${selectedMonth}&year=${selectedYear}`)
+        .then(response => {
+            if (!response.ok) {
+                console.error(`Error: ${response.status}`);
+                throw new Error(`Error: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log("Chiffre d'affaires mensuel (raw data):", data);
+
+            // Convertissez la chaîne en nombre
+            const chiffreAffairesMensuel = Number(data.trim());
+
+            if (!isNaN(chiffreAffairesMensuel)) {
+                // Mettez à jour le contenu HTML avec le chiffre d'affaires mensuel
+                const chiffreAffairesMensuelElement = document.getElementById('chiffreAffairesMensuel');
+                if (chiffreAffairesMensuelElement) {
+                    chiffreAffairesMensuelElement.textContent = chiffreAffairesMensuel.toString();
+                    console.log("Mise à jour réussie !");
+                } else {
+                    console.error("Erreur : Element HTML non trouvé.");
+                }
+            } else {
+                console.error("Erreur : La valeur n'est pas un nombre valide.");
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
+
+

@@ -3,12 +3,10 @@ package com.msprcrm.msprcrm.service;
 import com.msprcrm.msprcrm.entity.Commande;
 import com.msprcrm.msprcrm.entity.Product;
 import com.msprcrm.msprcrm.entity.ProduitStatistique;
-import com.msprcrm.msprcrm.service.ClientService;
-import com.msprcrm.msprcrm.service.CommandeService;
-import com.msprcrm.msprcrm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -121,4 +119,27 @@ public class StatistiquesService implements StatistiquesServiceInt {
         // Replace this with your actual logic to get top-selling products
         return productService.getTopSellingProducts(limit);
     }
+
+    @Override
+    public double getChiffreAffairesMensuel(int month, int year) {
+        List<Commande> commandes = commandeService.getCommandesByMonthAndYear(month, year);
+
+        double chiffreAffairesMensuel = 0;
+
+        for (Commande commande : commandes) {
+            chiffreAffairesMensuel += commande.getProduct().getPrice(); // Assurez-vous d'avoir une méthode getMontant() dans votre entité Commande
+        }
+
+        return chiffreAffairesMensuel;
+    }
+    @Override
+    public double getChiffreAffairesAnnuel(int year) {
+        List<Commande> commandesAnnuelles = commandeService.getCommandesByYear(year);
+
+        return commandesAnnuelles.stream()
+                .mapToDouble(commande -> commande.getProduct().getPrice())
+                .sum();
+    }
 }
+
+

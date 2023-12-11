@@ -13,15 +13,61 @@
 <h1>Statistiques CRM</h1>
 
 <div id="statistiquesContainer">
-    <h2>Produits les plus vendus</h2>
-    <ul id="produitsPlusVendus"></ul>
-    <p>Total des commandes : <span id="totalCommandes"></span></p>
-    <p>Total des clients : <span id="totalClients"></span></p>
-    <p>Total des produits : <span id="totalProduits"></span></p>
+    <!--<h2>Produits les plus vendus</h2>
+   <ul id="produitsPlusVendus"></ul>
+   <p>Total des commandes : <span id="totalCommandes"></span></p>
+   <p>Total des clients : <span id="totalClients"></span></p>
+   <p>Total des produits : <span id="totalProduits"></span></p>-->
     <div>
         <p id="topSellingProduct">Produit le plus vendu : <span id="nomProduitTop"></span> (Ventes: <span id="ventesTop"></span>)</p>
         <p id="leastSellingProduct">Produit le moins vendu : <span id="nomProduitLeast"></span> (Ventes: <span id="ventesLeast"></span>)</p>
     </div>
+
+    <!-- Ajoutez ces éléments où vous souhaitez afficher les chiffres d'affaires annuel et mensuel -->
+    <p>
+        Chiffre d'affaires annuel :
+        <label for="selectYearAnnuel">Année :</label>
+        <select id="selectYearAnnuel">
+            <!-- Ajoutez les options pour les années, par exemple, les 5 dernières années -->
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+        </select>
+        <button onclick="fetchChiffreAffairesAnnuel()">Afficher Chiffre d'affaires annuel</button>
+        <span id="chiffreAffairesAnnuel"></span>
+    </p>
+        Chiffre d'affaires mensuel :
+        <label for="selectMonth">Mois :</label>
+        <select id="selectMonth">
+            <option value="1">Janvier</option>
+            <option value="2">Février</option>
+            <option value="3">Mars</option>
+            <option value="4">Avril</option>
+            <option value="5">Mai</option>
+            <option value="6">Juin</option>
+            <option value="7">Juillet</option>
+            <option value="8">Aout</option>
+            <option value="9">Septembre</option>
+            <option value="10">Octobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Décembre</option>
+
+            <!-- Ajoutez les options pour les autres mois -->
+        </select>
+        <label for="selectYear">Année :</label>
+        <select id="selectYear">
+            <!-- Ajoutez les options pour les années, par exemple, les 5 dernières années -->
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+        </select>
+        <button onclick="fetchChiffreAffairesMensuel()">Afficher Chiffre d'affaires mensuel</button>
+        <span id="chiffreAffairesMensuel"></span>
+    </p>
 </div>
 
 <script src="JS/statistiques.js"></script>

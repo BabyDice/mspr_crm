@@ -44,6 +44,31 @@ public class StatistiquesController {
         return ResponseEntity.ok(produitsPlusVendus);
     }
 
+    @GetMapping("/chiffreAffairesMensuel")
+    public ResponseEntity<?> getChiffreAffairesMensuel(@RequestParam int month, @RequestParam int year) {
+        try {
+            double chiffreAffairesMensuel = statistiquesService.getChiffreAffairesMensuel(month, year);
+            return ResponseEntity.ok(chiffreAffairesMensuel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur interne du serveur");
+        }
+    }
+
+    @GetMapping("/chiffreAffairesAnnuel")
+    public ResponseEntity<?> getChiffreAffairesAnnuel(@RequestParam int year) {
+        try {
+            // Votre logique de traitement ici
+            // ...
+
+            return ResponseEntity.ok().body(statistiquesService.getChiffreAffairesAnnuel(year));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur interne du serveur");
+        }
+    }
+
+
     // Ajoutez d'autres méthodes pour les statistiques nécessaires
 }
 

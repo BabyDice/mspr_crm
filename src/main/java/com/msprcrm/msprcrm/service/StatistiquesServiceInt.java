@@ -15,4 +15,6 @@ import java.util.Map;
         List<ProduitStatistique> getProduitsPlusVendus(int limit);
         List<ProduitStatistique> getProduitsMoinsVendus(int limit);
         List<Product> getTopSellingProducts(int limit);  // Assurez-vous
+        double getChiffreAffairesMensuel(int month, int year);
+        double getChiffreAffairesAnnuel(int year);
     }
