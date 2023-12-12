@@ -1,0 +1,39 @@
+<!-- commandes.html -->
+<!DOCTYPE html>
+<html>
+<head><!-- Ajoutez vos balises head ici -->
+    <script th:src="@{/JS/commandes.js}" type="module"></script>
+</head>
+<body>
+<h2>Liste des Commandes</h2>
+
+<table border="1" id="commandesTable" style="height: 40px; overflow: hidden;">
+    <tr>
+        <th>Client</th>
+        <th>Produit</th>
+        <th>Date Commande</th>
+    </tr>
+    <!-- Les commandes seront ajoutées dynamiquement avec JavaScript -->
+</table>
+
+<h2>Ajouter une Commande</h2>
+
+<form>
+    <label for="clientSelect">Client :</label>
+    <select id="clientSelect">
+        <!-- Options seront ajoutées dynamiquement avec JavaScript -->
+    </select>
+
+    <label for="productSelect">Produit :</label>
+    <select id="productSelect">
+        <!-- Options seront ajoutées dynamiquement avec JavaScript -->
+    </select>
+
+    <label for="dateCommandeInput">Date de Commande :</label>
+    <input type="date" id="dateCommandeInput" required>
+
+    <button type="submit" class="btn btn-primary" id="addCommandBtn">Ajouter la Commande</button>
+</form>
+
+</body>
+</html>

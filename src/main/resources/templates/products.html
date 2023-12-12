@@ -7,11 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Interface</title>
+    <script th:src="@{/JS/products.js}" type="module"></script>
+
 </head>
 <body>
 <h1>Product CRUD Interface</h1>
 
-<!-- Form for adding a new product -->
+<!-- Form for adding a new products -->
 <!-- addProduct.html -->
 
 <form id="addProductForm">
@@ -21,7 +23,7 @@
     <input type="number" id="productPrice" required>
     <label for="productDescription">Product Description:</label>
     <input type="text" id="productDescription" required>
-    <button type="button" onclick="addProduct()">Add Product</button>
+    <button type="button" id="addProductBtn">Add Product</button>
 </form>
 <!-- Table for displaying products -->
 <table border="1">
@@ -39,6 +41,5 @@
     </tbody>
 </table>
 
-<script src="JS/script.js"></script>
 </body>
 </html>

@@ -1,3 +1,16 @@
+import {token} from "./token.js";
+const showYearSales = document.getElementById("showYearSales")
+showYearSales.addEventListener("click", function (){
+    fetchChiffreAffairesAnnuel()
+})
+
+const showMonthSales = document.getElementById("showMonthSales")
+showMonthSales.addEventListener("click", function (){
+    fetchChiffreAffairesMensuel()
+})
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const limit = 10; // ou tout autre nombre entier nécessaire
 
@@ -20,7 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function fetchStatistiques() {
-    fetch('http://localhost:8080/stats')
+    fetch('http://localhost:8080/stats', {
+        headers: {
+            'Authorization' : 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        },
+    })
         .then(handleResponse)
         .then(data => {
             console.log("Data received:", data);
@@ -59,7 +77,12 @@ function fetchStatistiques() {
 
 
 function fetchProduitsPlusVendus(limit) {
-    fetch("/produitsPlusVendus?limit=" + limit)
+    fetch("/produitsPlusVendus?limit=" + limit, {
+        headers: {
+            'Authorization' : 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        },
+    })
         .then(response => response.json())
         .then(data => {
             console.log("Top-selling products:", data);
@@ -116,7 +139,12 @@ function fetchChiffreAffairesAnnuel() {
     // Récupérez la valeur de l'année à partir de la liste déroulante
     const selectedYear = document.getElementById('selectYearAnnuel').value;
 
-    fetch(`/chiffreAffairesAnnuel?year=${selectedYear}`)
+    fetch(`/chiffreAffairesAnnuel?year=${selectedYear}`, {
+        headers: {
+            'Authorization' : 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        },
+    })
         .then(response => {
             if (!response.ok) {
                 console.error(`Error: ${response.status}`);
@@ -153,7 +181,12 @@ function fetchChiffreAffairesMensuel() {
     const selectedMonth = document.getElementById('selectMonth').value;
     const selectedYear = document.getElementById('selectYear').value;
 
-    fetch(`/chiffreAffairesMensuel?month=${selectedMonth}&year=${selectedYear}`)
+    fetch(`/chiffreAffairesMensuel?month=${selectedMonth}&year=${selectedYear}`, {
+        headers: {
+            'Authorization' : 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        },
+    })
         .then(response => {
             if (!response.ok) {
                 console.error(`Error: ${response.status}`);

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Interface</title>
+    <script th:src="@{/JS/clients.js}" type="module"></script>
 </head>
 <body>
 <h1>Client CRUD Interface</h1>
@@ -24,7 +25,7 @@
     <input type="text" id="clientCoordonnees" required>
     <label for="clientEmail">Email :</label>
     <input type="text" id="clientEmail" required>
-    <button type="button" onclick="addClient()">Add Client</button>
+    <button type="button" id="addClientBtn">Add Client</button>
 </form>
 <!-- Table for displaying clients -->
 <table border="1">
@@ -42,7 +43,5 @@
     <!-- Client rows will be inserted here -->
     </tbody>
 </table>
-
-<script src="JS/script.js"></script>
 </body>
 </html>

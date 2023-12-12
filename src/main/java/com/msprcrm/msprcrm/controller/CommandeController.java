@@ -40,7 +40,7 @@ public class CommandeController {
         try {
             commandeService.addCommande(commande);
             List<Commande> updatedCommandes = commandeService.getAllCommandes();
-            return ResponseEntity.ok(updatedCommandes);
+            return ResponseEntity.ok().body(updatedCommandes);
         } catch (Exception e) {
             e.printStackTrace();
             // Ajoutez un log détaillé de l'exception

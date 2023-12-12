@@ -8,6 +8,8 @@
         /* Ajoutez votre CSS personnalisé ici si nécessaire */
     </style>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script th:src="@{/JS/statistiques.js}" type="module"></script>
+
 </head>
 <body>
 <h1>Statistiques CRM</h1>
@@ -35,7 +37,7 @@
             <option value="2020">2020</option>
             <option value="2019">2019</option>
         </select>
-        <button onclick="fetchChiffreAffairesAnnuel()">Afficher Chiffre d'affaires annuel</button>
+        <button id="showYearSales">Afficher Chiffre d'affaires annuel</button>
         <span id="chiffreAffairesAnnuel"></span>
     </p>
         Chiffre d'affaires mensuel :
@@ -65,11 +67,9 @@
             <option value="2020">2020</option>
             <option value="2019">2019</option>
         </select>
-        <button onclick="fetchChiffreAffairesMensuel()">Afficher Chiffre d'affaires mensuel</button>
+        <button id="showMonthSales">Afficher Chiffre d'affaires mensuel</button>
         <span id="chiffreAffairesMensuel"></span>
     </p>
 </div>
-
-<script src="JS/statistiques.js"></script>
 </body>
 </html>
