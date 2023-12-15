@@ -117,7 +117,6 @@ fetch("/getAllCommandes",     {
     })
     .catch(error => {
         console.error("Erreur lors de la récupération des commandes:", error);
-        alert("Erreur lors de la récupération des commandes. Veuillez vérifier la console pour plus de détails.");
     });
 
 

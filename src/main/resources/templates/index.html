@@ -4,31 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>CRM</title>
+    <script type="module" th:src="@{/JS/header.js}"></script>
 </head>
 <body>
-<h1>Welcome to My App</h1>
-<button onclick="redirectToProducts()">Produits</button>
-<button onclick="redirectToClient()">Clients</button>
-<button onclick="redirectToCommandes()">Commandes</button>
-<button onclick="redirectToStatistics()">Statistiques</button>
+<h1>Bienvenue au crm</h1>
+<button type="button" id="produitBtn">Produits</button>
+<button type="button" id="clientBtn">Clients</button>
+<button type="button" id="commandeBtn">Commandes</button>
+<button type="button" id="statBtn">Statistiques</button>
 
-
-<script>
-    function redirectToProducts() {
-        window.location.href = '/view/products';
-    }
-    function redirectToClient() {
-        window.location.href = '/view/clients';
-    }
-
-    function redirectToCommandes() {
-        window.location.href = '/view/commandes';
-    }
-
-    function redirectToStatistics() {
-        window.location.href = '/view/statistiques';
-    }
-</script>
 </body>
 </html>
