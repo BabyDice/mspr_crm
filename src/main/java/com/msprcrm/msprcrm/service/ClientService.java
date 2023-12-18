@@ -48,9 +48,6 @@ public class ClientService {
 
 
     public void addClient(Client client) {
-        // Ajouter la logique pour ajouter un produit
-        // Vous pouvez également effectuer des validations ici avant d'ajouter le produit
-
         clientRepository.save(client);
     }
 
